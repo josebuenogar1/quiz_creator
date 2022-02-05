@@ -1,2 +1,2 @@
-# test_creator
-this is an app to create tests.
+# quiz_creator
+this is an app to create quizzes.
