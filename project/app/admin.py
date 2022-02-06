@@ -1,5 +1,5 @@
 from django.contrib import admin
-from app.models import UsersApp, Quizzes
+from app.models import Profile, Quiz
 # Register your models here.
-admin.site.register(UsersApp)
-admin.site.register(Quizzes)
+admin.site.register(Profile)
+admin.site.register(Quiz)
