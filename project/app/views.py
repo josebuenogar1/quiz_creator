@@ -2,6 +2,9 @@ from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
+from django.db.models.signals import post_save
+from django.contrib.auth.models import User
+from .models import Profile
 
 # Create your views here.
 def index(request):
@@ -20,3 +23,9 @@ def register(request):
         form = UserCreationForm()
     context = {'form':form}
     return render(request,'app/register.html',context)
+
+#create user and send a signal to save profile
+def create_profile(sender,instance,created,**kwards):
+    if created:
+        Profile.objects.create(name=instance)
+post_save.connect(create_profile,sender=User)
