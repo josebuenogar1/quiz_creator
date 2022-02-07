@@ -6,6 +6,7 @@ from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 from .forms import QuestionForm
 from .models import Profile,Quiz,Questions,QuizOptions,QuizType
+from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
 def index(request):
@@ -56,12 +57,16 @@ def quiz(request,quiz_name):
     else:
         form = QuestionForm()
 
-    id_questions=Questions.objects.filter(quiz=id_quiz)
-    #TODO:if quiz_options check
-    questions=[]
-    for e in id_questions:
-        questions.append(QuizOptions.objects.get(id=e.id))
-    
+
+    try:
+        id_questions=Questions.objects.filter(quiz=id_quiz)
+        #TODO:if quiz_options check
+        questions=[]
+        for e in id_questions:
+            questions.append(QuizOptions.objects.get(id=e.number))
+    except QuizOptions.DoesNotExist:
+        print("error...",QuizOptions.DoesNotExist)
+
     context={'quiz_name':quiz_name,'form':form, 'questions':questions}
     return render(request,'app/quiz.html',context)
 
