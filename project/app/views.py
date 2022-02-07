@@ -40,6 +40,7 @@ post_save.connect(create_profile,sender=User)
 
 def quiz(request,quiz_name):
 
+    id_quiz=Quiz.objects.get(name=quiz_name) 
     if request.method == 'POST':
         form = QuestionForm(request.POST)
         if form.is_valid():
@@ -49,13 +50,18 @@ def quiz(request,quiz_name):
             form = QuestionForm()
             #save to questions
             id_sentence = QuizOptions.objects.get(sentence=sentence)
-            id_quiz=Quiz.objects.get(name=quiz_name)
             id_quiz_type=QuizType.objects.get(name='quiz_options')
-            print(id_quiz_type.id)
             Questions.objects.create(number=id_sentence.id, quiz_type=id_quiz_type, quiz=id_quiz)
+            
     else:
         form = QuestionForm()
 
-    context={'quiz_name':quiz_name,'form':form}
+    id_questions=Questions.objects.filter(quiz=id_quiz)
+    #TODO:if quiz_options check
+    questions=[]
+    for e in id_questions:
+        questions.append(QuizOptions.objects.get(id=e.id))
+    
+    context={'quiz_name':quiz_name,'form':form, 'questions':questions}
     return render(request,'app/quiz.html',context)
 
