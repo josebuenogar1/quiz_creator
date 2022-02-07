@@ -4,7 +4,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
-from .models import Profile,Quiz
+from .forms import QuestionForm
+from .models import Profile,Quiz,Questions,QuizOptions,QuizType
 
 # Create your views here.
 def index(request):
@@ -35,3 +36,26 @@ def create_profile(sender,instance,created,**kwards):
     if created:
         Profile.objects.create(name=instance)
 post_save.connect(create_profile,sender=User)
+#end
+
+def quiz(request,quiz_name):
+
+    if request.method == 'POST':
+        form = QuestionForm(request.POST)
+        if form.is_valid():
+            form.save()                      
+            sentence=form.cleaned_data['sentence']
+            messages.success(request,f'sentence {sentence} created')
+            form = QuestionForm()
+            #save to questions
+            id_sentence = QuizOptions.objects.get(sentence=sentence)
+            id_quiz=Quiz.objects.get(name=quiz_name)
+            id_quiz_type=QuizType.objects.get(name='quiz_options')
+            print(id_quiz_type.id)
+            Questions.objects.create(number=id_sentence.id, quiz_type=id_quiz_type, quiz=id_quiz)
+    else:
+        form = QuestionForm()
+
+    context={'quiz_name':quiz_name,'form':form}
+    return render(request,'app/quiz.html',context)
+

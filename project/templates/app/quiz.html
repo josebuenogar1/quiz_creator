@@ -1,10 +1,15 @@
 {% extends 'app/index.html' %}
 
-
 {% block content%}
 
-<p>Quiz:</p>
-{{ quiz_name }}
+<p>Quiz: {{ quiz_name }} </p>
+
+
+<form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">SAVE</button>
+</form>
+
 
 {% endblock%}
-
