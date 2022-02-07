@@ -28,12 +28,14 @@
 {% endfor %}
 {% endif %}
 
+
+
 {% block content%}
     {% if request.user.is_authenticated %}
     <p>List of Quizzes: </p>
     {% for quiz in quizzes %}
         <div>
-            <h2 class="quiz_name"><a href="#">{{ quiz.name }}</a></h2>
+            <h2 class="quiz_name"><a href="{% url 'quiz' quiz.name %}">{{ quiz.name }}</a></h2>
         </div>
     {% endfor %}
     {% endif %}

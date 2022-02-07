@@ -8,4 +8,5 @@ urlpatterns = [
     path('register/', views.register, name="register"),
     path('login/', LoginView.as_view(template_name='app/login.html'), name="login"),
     path('logout/',LogoutView.as_view(template_name='app/logout.html'), name="logout"),
+    path('quiz/<str:quiz_name>/',views.quiz, name="quiz"),
 ]
