@@ -16,7 +16,7 @@ class Quiz(models.Model):
         return str(self.name)
 
 class QuizOptions(models.Model):
-    sentence=models.CharField(max_length=50, null=False)
+    sentence=models.CharField(max_length=50, null=False, unique=True)
     true_answer=models.CharField(max_length=50, null=False)
     false_anser_one=models.CharField(max_length=50, null=False)
     false_anser_two=models.CharField(max_length=50, null=False)
