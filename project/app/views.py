@@ -11,22 +11,21 @@ from django.core.exceptions import ObjectDoesNotExist
 # Create your views here.
 def index(request):
     context={}
-    form = QuizForm()
     
-    if request.method == 'POST':
-        form = QuizForm(request.POST)
-        if form.is_valid():
-            name=form.cleaned_data['name']
-            user_app=Profile.objects.get(name=request.user.username)
-            form=QuizForm({'name':name,'user_app':user_app})
-            form.save()
-
     if request.user.is_authenticated:
+        form = QuizForm()
+        if request.method == 'POST':
+            form = QuizForm(request.POST)
+            if form.is_valid():
+                name=form.cleaned_data['name']
+                user_app=Profile.objects.get(name=request.user.username)
+                form=QuizForm({'name':name,'user_app':user_app})
+                form.save()
+
         user_name=request.user.username
         profile = Profile.objects.get(name=user_name)
         quizzes = Quiz.objects.filter(user_app_id=profile.id)
-    
-    context={'quizzes':quizzes,'form':form}
+        context={'quizzes':quizzes,'form':form}
 
     return render(request,"app/index.html",context)
 
