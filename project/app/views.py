@@ -4,18 +4,29 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
-from .forms import QuestionForm
+from .forms import QuestionForm,QuizForm
 from .models import Profile,Quiz,Questions,QuizOptions,QuizType
 from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
 def index(request):
     context={}
+    form = QuizForm()
+    
+    if request.method == 'POST':
+        form = QuizForm(request.POST)
+        if form.is_valid():
+            name=form.cleaned_data['name']
+            user_app=Profile.objects.get(name=request.user.username)
+            form=QuizForm({'name':name,'user_app':user_app})
+            form.save()
+
     if request.user.is_authenticated:
         user_name=request.user.username
         profile = Profile.objects.get(name=user_name)
         quizzes = Quiz.objects.filter(user_app_id=profile.id)
-        context={'quizzes':quizzes}
+    
+    context={'quizzes':quizzes,'form':form}
 
     return render(request,"app/index.html",context)
 
