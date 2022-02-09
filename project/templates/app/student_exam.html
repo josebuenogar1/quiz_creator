@@ -1,22 +1,6 @@
-{% extends 'app/index.html' %}
-
-{% block content%}
-{% if request.user.is_authenticated %}
-
-<p>Quiz: {{ quiz_name }} </p>
-
-
-<form method="post">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button type="submit">SAVE</button>
-</form>
-
-<div>
-    Link to exam:<a href="http://127.0.0.1:8000/student/{{request.user.username}}/{{ quiz_name }}">http://127.0.0.1:8000/student/{{request.user.username}}/{{ quiz_name }}</a>
-</div>
-
-<p>List of questions: </p>
+<p>exam: </p>
+<form id="CreateForm" method="post">
+{% csrf_token %}
 {% for question in questions %}
     <div id="{{ question.id }}">
         <h2 class="question_name">{{ question }}</a></h2>
@@ -25,8 +9,10 @@
             <input type="radio" id="{{ question.id }}:{{ question.get_false_anser_one }}" name="{{ question.id }}" value="{{ question.get_false_anser_one }}">
             <label for="{{ question.get_false_anser_one }}">{{ question.get_false_anser_one }}</label><br>
             <input type="radio" id="{{ question.id }}:{{ question.get_false_anser_two }}" name="{{ question.id }}" value="{{ question.get_false_anser_two }}">
-            <label for="{{ question.get_false_anser_two }}">{{ question.get_false_anser_two }}</label> 
+            <label for="{{ question.get_false_anser_two }}">{{ question.get_false_anser_two }}</label>
     </div>
 {% endfor %}
-{% endif %}
-{% endblock%}
+</form>
+<button type="submit" form="CreateForm">Send</button>
+
+

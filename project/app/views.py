@@ -80,3 +80,22 @@ def quiz(request,quiz_name):
     context={'quiz_name':quiz_name,'form':form, 'questions':questions}
     return render(request,'app/quiz.html',context)
 
+
+def student_exam(request,profile,quiz_name):
+    if request.method == 'GET':
+        id_quiz=Quiz.objects.get(name=quiz_name) 
+        try:
+            id_questions=Questions.objects.filter(quiz=id_quiz)
+            #TODO:if quiz_options check
+            questions=[]
+            for e in id_questions:
+                questions.append(QuizOptions.objects.get(id=e.number))
+        except QuizOptions.DoesNotExist:
+            print("error...",QuizOptions.DoesNotExist)
+        
+        context = {'questions':questions,'quiz_name':quiz_name}
+        return render(request,'app/student_exam.html',context)
+
+    if request.method == 'POST':
+        print(request.POST)
+        return HttpResponse("good luck")
