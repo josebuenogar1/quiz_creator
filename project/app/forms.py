@@ -15,4 +15,4 @@ class QuizForm(forms.ModelForm):
     class Meta:
         model = Quiz
         fields = '__all__' 
-        widgets = {'user_app': forms.HiddenInput()}
+        widgets = {'user_app': forms.HiddenInput(),'token': forms.HiddenInput(),}

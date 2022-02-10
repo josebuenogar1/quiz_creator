@@ -82,8 +82,12 @@ def quiz(request,quiz_name):
     return render(request,'app/quiz.html',context)
 
 
-def student_exam(request,profile,quiz_name):
+def student_quiz(request,profile,quiz_name,token):
     if request.method == 'GET':
+        is_token = Quiz.objects.filter(name=quiz_name).filter(token=token).exists()
+        if not is_token:
+            return HttpResponse("token is invalid")
+
         id_quiz=Quiz.objects.get(name=quiz_name) 
         try:
             id_questions=Questions.objects.filter(quiz=id_quiz)
@@ -98,6 +102,7 @@ def student_exam(request,profile,quiz_name):
         return render(request,'app/student_exam.html',context)
 
     if request.method == 'POST':
+        #TODO save data
         print(request.POST)
         return HttpResponse("good luck")
 
@@ -106,7 +111,10 @@ def generate_link(request, quiz_name):
     if request.user.is_authenticated:
         token_generator=PasswordResetTokenGenerator()
         token = token_generator.make_token(request.user)
-        print(token.__len__)    
+        id_quiz=Quiz.objects.get(name=quiz_name)
+        setattr(id_quiz, 'token', token)
+        id_quiz.save()
+
     context={'quiz_name':quiz_name,'token':token}
     return render(request,'app/generate_link.html',context)
    
