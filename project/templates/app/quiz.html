@@ -5,28 +5,37 @@
 
 <p>Quiz: {{ quiz_name }} </p>
 
+<div>
+    <form action="{% url 'generate_link' quiz_name %}">
+        <input type="submit" value="Generate link to quiz" />
+    </form>
+</div>
 
+
+<div>
+    <p>Add question: </p>
 <form method="post">
     {% csrf_token %}
     {{form.as_p}}
     <button type="submit">SAVE</button>
 </form>
-
-<div>
-    Link to exam:<a href="http://127.0.0.1:8000/student/{{request.user.username}}/{{ quiz_name }}">http://127.0.0.1:8000/student/{{request.user.username}}/{{ quiz_name }}</a>
 </div>
 
-<p>List of questions: </p>
-{% for question in questions %}
-    <div id="{{ question.id }}">
-        <h2 class="question_name">{{ question }}</a></h2>
-            <input type="radio" id="{{ question.id }}:{{ question.get_true_answer }}" name="{{ question.id }}" value="{{ question.get_true_answer }}">
-            <label for="{{ question.get_true_answer }}">{{ question.get_true_answer }}</label><br>
-            <input type="radio" id="{{ question.id }}:{{ question.get_false_anser_one }}" name="{{ question.id }}" value="{{ question.get_false_anser_one }}">
-            <label for="{{ question.get_false_anser_one }}">{{ question.get_false_anser_one }}</label><br>
-            <input type="radio" id="{{ question.id }}:{{ question.get_false_anser_two }}" name="{{ question.id }}" value="{{ question.get_false_anser_two }}">
-            <label for="{{ question.get_false_anser_two }}">{{ question.get_false_anser_two }}</label> 
-    </div>
-{% endfor %}
+
+  
+    <p>List of questions: </p>
+
+    {% for question in questions %}
+        <div id="{{ question.id }}">
+            <h2 class="question_name">{{ question }}</a></h2>
+                <input type="radio" id="{{ question.id }}:{{ question.get_true_answer }}" name="{{ question.id }}" value="{{ question.get_true_answer }}">
+                <label for="{{ question.get_true_answer }}">{{ question.get_true_answer }}</label><br>
+                <input type="radio" id="{{ question.id }}:{{ question.get_false_anser_one }}" name="{{ question.id }}" value="{{ question.get_false_anser_one }}">
+                <label for="{{ question.get_false_anser_one }}">{{ question.get_false_anser_one }}</label><br>
+                <input type="radio" id="{{ question.id }}:{{ question.get_false_anser_two }}" name="{{ question.id }}" value="{{ question.get_false_anser_two }}">
+                <label for="{{ question.get_false_anser_two }}">{{ question.get_false_anser_two }}</label> 
+        </div>
+    {% endfor %}
+
 {% endif %}
 {% endblock%}

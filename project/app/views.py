@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from .forms import QuestionForm,QuizForm
 from .models import Profile,Quiz,Questions,QuizOptions,QuizType
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
 
 # Create your views here.
 def index(request):
@@ -99,3 +100,13 @@ def student_exam(request,profile,quiz_name):
     if request.method == 'POST':
         print(request.POST)
         return HttpResponse("good luck")
+
+def generate_link(request, quiz_name):
+    
+    if request.user.is_authenticated:
+        token_generator=PasswordResetTokenGenerator()
+        token = token_generator.make_token(request.user)
+        print(token.__len__)    
+    context={'quiz_name':quiz_name,'token':token}
+    return render(request,'app/generate_link.html',context)
+   

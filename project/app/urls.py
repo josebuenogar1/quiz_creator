@@ -10,4 +10,5 @@ urlpatterns = [
     path('logout/',LogoutView.as_view(template_name='app/logout.html'), name="logout"),
     path('quiz/<str:quiz_name>/',views.quiz, name="quiz"),
     path('student/<str:profile>/<str:quiz_name>/',views.student_exam, name="alumno_exam"),
+    path('generate_link/<str:quiz_name>',views.generate_link, name="generate_link"),  
 ]
