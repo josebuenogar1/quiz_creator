@@ -14,7 +14,6 @@ def index(request):
     context={}
     
     if request.user.is_authenticated:
-        form = QuizForm()
         if request.method == 'POST':
             form = QuizForm(request.POST)
             if form.is_valid():
@@ -22,6 +21,9 @@ def index(request):
                 user_app=Profile.objects.get(name=request.user.username)
                 form=QuizForm({'name':name,'user_app':user_app})
                 form.save()
+                return redirect('index')
+        else:
+            form = QuizForm()
 
         user_name=request.user.username
         profile = Profile.objects.get(name=user_name)
@@ -29,7 +31,7 @@ def index(request):
         context={'quizzes':quizzes,'form':form}
 
     return render(request,"app/index.html",context)
-
+    
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -37,8 +39,8 @@ def register(request):
             form.save()
             username=form.cleaned_data['username']
             messages.success(request,f'User {username} created')
-            return redirect('index')
-    else:
+            return redirect('index')           
+    else:       
         form = UserCreationForm()
     context = {'form':form}
     return render(request,'app/register.html',context)
@@ -64,8 +66,8 @@ def quiz(request,quiz_name):
             id_sentence = QuizOptions.objects.get(sentence=sentence)
             id_quiz_type=QuizType.objects.get(name='quiz_options')
             Questions.objects.create(number=id_sentence.id, quiz_type=id_quiz_type, quiz=id_quiz)
-            
-    else:
+               
+    else:    
         form = QuestionForm()
 
 

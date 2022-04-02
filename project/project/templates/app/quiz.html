@@ -1,0 +1,52 @@
+{% extends 'app/index.html' %}
+
+{% block content%}
+{% if request.user.is_authenticated %}
+
+
+<div class="row-add">
+
+    <p>Quiz: {{ quiz_name }} </p>
+
+    <div>
+        <form action="{% url 'generate_link' quiz_name %}">
+            <input type="submit" value="Generate link to this quiz" />
+        </form>
+    </div>
+
+</div>
+
+
+<div class="row-add-question">
+    <p>Add question: </p>
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="fieldWrapper">
+            {{ field.errors }}
+            {{ field.label_tag }} {{ field }}
+        </div>
+        {% endfor %}
+        <button type="submit">SAVE</button>
+    </form>
+</div>
+
+  
+<div class="row-list">
+    <p>List of questions: </p>
+
+    {% for question in questions %}
+        <div class="number-question" id="{{ question.id }}">
+            <h3 >{{ question }}</h3>
+                <input type="radio" id="{{ question.id }}:{{ question.get_true_answer }}" name="{{ question.id }}" value="{{ question.get_true_answer }}">
+                <label for="{{ question.get_true_answer }}">{{ question.get_true_answer }}</label><br>
+                <input type="radio" id="{{ question.id }}:{{ question.get_false_anser_one }}" name="{{ question.id }}" value="{{ question.get_false_anser_one }}">
+                <label for="{{ question.get_false_anser_one }}">{{ question.get_false_anser_one }}</label><br>
+                <input type="radio" id="{{ question.id }}:{{ question.get_false_anser_two }}" name="{{ question.id }}" value="{{ question.get_false_anser_two }}">
+                <label for="{{ question.get_false_anser_two }}">{{ question.get_false_anser_two }}</label> 
+        </div>
+    {% endfor %}
+</div>
+
+{% endif %}
+{% endblock%}
