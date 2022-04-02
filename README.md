@@ -1,13 +1,13 @@
 # quiz_creator
 ### This is a Web App to create quizzes.
 
-<img src="https://github.com/josebuenogar1/quiz_creator/images4readme/animation.gif" width="500" height="500"/> <br/><br/>
+<img src="https://github.com/josebuenogar1/quiz_creator/blob/main/project/images4readme/animation.gif" width="500" height="500"/> <br/><br/>
 
 ## Features
 - Create a new profesor profile.
 - Add your quiz.
-- Put some questions on.
-- Shere your quiz with your students.
+- Put some questions in.
+- Share your quiz with your students.
 
 
 ## Getting Started
