@@ -32,7 +32,8 @@
 <img src="https://github.com/josebuenogar1/quiz_creator/blob/main/project/images4readme/ClassDiagram.png" width="50%" height="50%"/> <br/><br/>
 </div>
 
-### TODO
-- quiz: edit and delete.
+### Todo
+- quiz: edit.
 - question: edit and delete.
+- answer: delete with quiz deletion.
 - quiz evaluation and graphs.

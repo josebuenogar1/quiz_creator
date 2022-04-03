@@ -52,6 +52,16 @@ def create_profile(sender,instance,created,**kwards):
 post_save.connect(create_profile,sender=User)
 #end
 
+def quiz_remove(request,quiz_name):
+    if request.method == 'GET':
+        id_quiz=Quiz.objects.get(name=quiz_name)
+        try:
+            Quiz.objects.filter(id=id_quiz.id).delete()   
+        except Quiz.DoesNotExist:
+            print("error...",Quiz.DoesNotExist)
+    
+    return redirect('index') 
+    
 def quiz(request,quiz_name):
 
     id_quiz=Quiz.objects.get(name=quiz_name) 

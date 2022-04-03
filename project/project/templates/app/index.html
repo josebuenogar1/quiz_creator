@@ -51,7 +51,7 @@
                 </td>
                 <td class="text-right">
                     <a href="?" class="edit-item" title="Edit">Edit</a>
-                    <a href="?" class="remove-item" title="Remove">Remove</a>
+                    <a href="{% url 'quiz-remove' quiz.name %}">Remove</a>
                 </td>
             </tr>
         {% endfor %}
