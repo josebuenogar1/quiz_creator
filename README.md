@@ -24,6 +24,9 @@
 - Run python manage.py runserver.
 - Open localhost:8000.
 
+### Class Diagram
+
+<img src="https://github.com/josebuenogar1/quiz_creator/blob/main/project/images4readme/ClassDiagram.png" width="500" height="500"/> <br/><br/>
 
 ### TODO
 - quiz: edit and delete.
