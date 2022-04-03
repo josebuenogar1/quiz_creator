@@ -1,4 +1,4 @@
-{% load static%}
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +6,6 @@
 <link type='text/css' href='{% static "css/index.css"%}' rel='stylesheet' /> 
 </head>
 <body>
-
 <header class="main-head">
     <nav class="main">
         <h1 id="welcome">Quiz Creator</h1>
@@ -23,18 +22,15 @@
 </header>
 
 {% if messages %}
-{% for message in messages %}
-<div class="notification {{ message.tags }}">
-    {{ message }}
-</div>
-{% endfor %}
+    {% for message in messages %}
+    <div class="notification {{ message.tags }}">
+        {{ message }}
+    </div>
+    {% endfor %}
 {% endif %}
-
-
 
 {% block content%}
     {% if request.user.is_authenticated %}
-
     <div class="row-add">
         <p> Add Quiz:</p>
         <form method="post">
@@ -43,20 +39,25 @@
             <button type="submit">Save quiz</button>
         </form>
     </div>
-
     <div class="row-list">
-        <p>List of Quizzes: </p>
-        {% for quiz in quizzes %}
-        <a href="{% url 'quiz' quiz.name %}">    
-            <div class="quiz-name">
-                <h4>{{ quiz.name }}</h4>
-            </div>
-        </a>
+        <table>
+            <tr>
+                <td colspan="2"><p>List of Quizzes: </p></td>
+            </tr> 
+        {% for quiz in quizzes %} 
+            <tr>
+                <td >    
+                    <a href="{% url 'quiz' quiz.name %}"><h4>{{ quiz.name }}</h4></a>
+                </td>
+                <td class="text-right">
+                    <a href="?" class="edit-item" title="Edit">Edit</a>
+                    <a href="?" class="remove-item" title="Remove">Remove</a>
+                </td>
+            </tr>
         {% endfor %}
+    </table>
     </div>
-
     {% endif %}
 {% endblock%}
-
 </body>
 </html>

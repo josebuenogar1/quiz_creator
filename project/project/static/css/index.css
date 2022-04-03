@@ -1,6 +1,7 @@
 body {
     background-color: #DBECE2;
 }
+
 .main ul {
     list-style-type: none;
     margin: 0;
@@ -33,7 +34,6 @@ li a:hover:not(.active) {
 .active {
     background-color:#12130F;
 }
-
 
 #welcome {
     text-align: center;
@@ -104,3 +104,26 @@ li a:hover:not(.active) {
     border-radius: 4px;
     margin-bottom: 10px;
 }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 0.5rem;
+    border-bottom: 1pt solid #709991;;
+}
+
+td.text-right{
+    padding: 0.5rem;
+    text-align: right;
+}
+
+  
+
+
+
+
+
+
