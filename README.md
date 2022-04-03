@@ -1,7 +1,9 @@
 # quiz_creator
 ### This is a Web App to create quizzes.
 
-<img src="https://github.com/josebuenogar1/quiz_creator/blob/main/project/images4readme/animation.gif" width="500" height="500"/> <br/><br/>
+<div style="width: 589px; height: 464px;">
+<img src="https://github.com/josebuenogar1/quiz_creator/blob/main/project/images4readme/animation.gif" width="100%" height="100%"/> <br/><br/>
+</div>
 
 ## Features
 - Create a new profesor profile.
@@ -26,7 +28,9 @@
 
 ### Class Diagram
 
-<img src="https://github.com/josebuenogar1/quiz_creator/blob/main/project/images4readme/ClassDiagram.png" width="500" height="500"/> <br/><br/>
+<div style="width: 1006px; height: 420px;">
+<img src="https://github.com/josebuenogar1/quiz_creator/blob/main/project/images4readme/ClassDiagram.png" width="50%" height="50%"/> <br/><br/>
+</div>
 
 ### TODO
 - quiz: edit and delete.
