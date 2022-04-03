@@ -47,11 +47,11 @@
         {% for quiz in quizzes %} 
             <tr>
                 <td >    
-                    <a href="{% url 'quiz' quiz.name %}"><h4>{{ quiz.name }}</h4></a>
+                    <a class="a-black" href="{% url 'quiz' quiz.name %}"><h4>{{ quiz.name }}</h4></a>
                 </td>
                 <td class="text-right">
-                    <a href="?" class="edit-item" title="Edit">Edit</a>
-                    <a href="{% url 'quiz-remove' quiz.name %}">Remove</a>
+                    <a class="a-black" href="?" class="edit-item" title="Edit">Edit</a>
+                    <a class="a-black" href="{% url 'quiz-remove' quiz.name %}">Remove</a>
                 </td>
             </tr>
         {% endfor %}

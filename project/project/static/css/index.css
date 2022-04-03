@@ -31,6 +31,24 @@ li a:hover:not(.active) {
     background-color: #111;
 }
 
+a.a-white{
+    color: white;    
+}
+
+a.a-white:hover, a.a-white:active {
+    text-decoration: underline;
+    color: #4D635E;
+}
+
+a.a-black{
+    color: black;
+}
+
+a.a-black:hover, a.a-black:active{
+    text-decoration: underline;
+    color: #73B097;
+}
+
 .active {
     background-color:#12130F;
 }

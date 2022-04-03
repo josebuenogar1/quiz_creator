@@ -6,7 +6,7 @@
 
 <div class="row-add">
 
-    <p>Quiz: {{ quiz_name }} </p>
+    <p><h4>Quiz: <a class="a-white" href="{% url 'index' %}">{{ quiz_name }}</a> </h4></p>
 
     <div>
         <form action="{% url 'generate_link' quiz_name %}">
