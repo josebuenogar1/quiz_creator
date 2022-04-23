@@ -52,6 +52,6 @@ class QuizOptions(models.Model):
 
 
 class Answer(models.Model):
-    student = models.JSONField(null=False)
+    test = models.JSONField(null=False)
     def __str__(self):
-        return str(self.student)
+        return str(self.test)
