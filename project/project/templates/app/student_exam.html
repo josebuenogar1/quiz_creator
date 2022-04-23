@@ -14,10 +14,10 @@
         <h2>{{ question }}</h2>
             <input type="radio" id="{{ question.id }}:{{ question.get_true_answer }}" name="{{ question.id }}" value="{{ question.get_true_answer }}">
             <label for="{{ question.get_true_answer }}">{{ question.get_true_answer }}</label><br>
-            <input type="radio" id="{{ question.id }}:{{ question.get_false_anser_one }}" name="{{ question.id }}" value="{{ question.get_false_anser_one }}">
-            <label for="{{ question.get_false_anser_one }}">{{ question.get_false_anser_one }}</label><br>
-            <input type="radio" id="{{ question.id }}:{{ question.get_false_anser_two }}" name="{{ question.id }}" value="{{ question.get_false_anser_two }}">
-            <label for="{{ question.get_false_anser_two }}">{{ question.get_false_anser_two }}</label>
+            <input type="radio" id="{{ question.id }}:{{ question.get_false_answer_one }}" name="{{ question.id }}" value="{{ question.get_false_answer_one }}">
+            <label for="{{ question.get_false_answer_one }}">{{ question.get_false_answer_one }}</label><br>
+            <input type="radio" id="{{ question.id }}:{{ question.get_false_answer_two }}" name="{{ question.id }}" value="{{ question.get_false_answer_two }}">
+            <label for="{{ question.get_false_answer_two }}">{{ question.get_false_answer_two }}</label>
     </div>
 {% endfor %}
 </form>

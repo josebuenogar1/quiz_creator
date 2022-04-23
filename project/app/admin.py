@@ -3,7 +3,7 @@ from app.models import Profile, Quiz,QuizOptions,QuizType,Questions
 # Register your models here.
 
 class QuizGetters(admin.ModelAdmin):
-    list_display = ('get_true_answer','get_false_anser_one','get_false_anser_two')
+    list_display = ('get_true_answer','get_false_answer_one','get_false_answer_two')
 
 
 admin.site.register(Profile)

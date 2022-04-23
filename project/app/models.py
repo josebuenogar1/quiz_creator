@@ -19,8 +19,8 @@ class Quiz(models.Model):
 class QuizOptions(models.Model):
     sentence=models.CharField(max_length=50, null=False, unique=True)
     true_answer=models.CharField(max_length=50, null=False)
-    false_anser_one=models.CharField(max_length=50, null=False)
-    false_anser_two=models.CharField(max_length=50, null=False)
+    false_answer_one=models.CharField(max_length=50, null=False)
+    false_answer_two=models.CharField(max_length=50, null=False)
 
     def __str__(self):
         return str(self.sentence)
@@ -30,12 +30,12 @@ class QuizOptions(models.Model):
         return str(self.true_answer)
 
     @property
-    def get_false_anser_one(self):
-        return str(self.false_anser_one)
+    def get_false_answer_one(self):
+        return str(self.false_answer_one)
 
     @property
-    def get_false_anser_two(self):
-        return str(self.false_anser_two)
+    def get_false_answer_two(self):
+        return str(self.false_answer_two)
 
 class QuizType(models.Model):
     name=models.CharField(max_length=20 , null=False)
