@@ -35,5 +35,4 @@
 ### Todo
 - quiz: edit.
 - question: edit and delete.
-- answer: delete with quiz deletion.
 - quiz evaluation and graphs.
