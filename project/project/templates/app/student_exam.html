@@ -6,9 +6,10 @@
 <link type='text/css' href='{% static "css/index.css"%}' rel='stylesheet' /> 
 </head>
 <body>
-<p><h1>Quiz</h1></p>
+<p><h1>Quiz: {{quiz_name}}</h1></p>
 <form id="CreateForm" method="post">
 {% csrf_token %}
+<label for="fname">Student name:</label><input type="text" id="fname" name="fname"><br>
 {% for question in questions %}
     <div class="question_name" id="{{ question.id }}">
         <h2>{{ question }}</h2>

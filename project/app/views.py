@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 from .forms import QuestionForm,QuizForm
-from .models import Profile,Quiz,Questions,QuizOptions,QuizType
+from .models import Profile,Quiz,Questions,QuizOptions,QuizType,Answer
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 
@@ -114,9 +114,9 @@ def student_quiz(request,profile,quiz_name,token):
         return render(request,'app/student_exam.html',context)
 
     if request.method == 'POST':
-        #TODO save data
-        print(request.POST)
-        return HttpResponse("good luck")
+        myDict = request.POST
+        Answer.objects.create(student=myDict.dict())
+        return HttpResponse("your test has been saved")
 
 def generate_link(request, quiz_name):
     
