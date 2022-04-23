@@ -7,7 +7,8 @@ class QuestionForm(forms.ModelForm):
 
     class Meta:
         model = QuizOptions
-        fields = '__all__' 
+        exclude = ('quiz',)
+        widgets = {'quiz': forms.HiddenInput(),}
 
 
 class QuizForm(forms.ModelForm):
